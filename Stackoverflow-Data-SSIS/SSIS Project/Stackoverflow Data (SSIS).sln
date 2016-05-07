@@ -1,0 +1,19 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Stackoverflow Data (SSIS)", "Stackoverflow Data (SSIS)\Stackoverflow Data (SSIS).dtproj", "{9B10365C-A3B5-4D74-92FD-89DC2CC4205C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B10365C-A3B5-4D74-92FD-89DC2CC4205C}.Development|Default.ActiveCfg = Development
+		{9B10365C-A3B5-4D74-92FD-89DC2CC4205C}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

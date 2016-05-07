@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="badges">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="row">
+          <xs:complexType>
+            <xs:attribute name="Id" type="xs:unsignedInt" use="optional" />
+            <xs:attribute name="UserId" type="xs:unsignedInt" use="optional" />
+            <xs:attribute name="Name" type="xs:string" use="optional" />
+            <xs:attribute name="Date" type="xs:dateTime" use="optional" />
+            <xs:attribute name="Class" type="xs:unsignedByte" use="optional" />
+            <xs:attribute name="TagBased" type="xs:string" use="optional" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

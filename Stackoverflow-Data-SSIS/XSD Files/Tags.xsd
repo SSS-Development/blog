@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="tags">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="row">
+          <xs:complexType>
+            <xs:attribute name="Id" type="xs:unsignedShort" use="optional" />
+            <xs:attribute name="TagName" type="xs:string" use="optional" />
+            <xs:attribute name="Count" type="xs:unsignedShort" use="optional" />
+            <xs:attribute name="ExcerptPostId" type="xs:unsignedInt" use="optional" />
+            <xs:attribute name="WikiPostId" type="xs:unsignedInt" use="optional" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
