@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Import"
   DTS:PackageType="5"
-  DTS:VersionBuild="102"
-  DTS:VersionGUID="{A1B1E80F-BCFA-4AC3-A639-4C628366EFA8}">
+  DTS:VersionBuild="143"
+  DTS:VersionGUID="{E4A3115E-1141-4BC4-893F-E7F5DE2D57D5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -24,15 +24,6 @@
       DTS:ObjectName="CurrentFile">
       <DTS:VariableValue
         DTS:DataType="8">D:\Projects\Open Data\Stackoverflow\Import\dba.stackexchange.com\Badges.xml</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{6570F1FD-6BB6-47B4-AAC5-C849B58615C0}"
-      DTS:IncludeInDebugDump="6789"
-      DTS:Namespace="User"
-      DTS:ObjectName="SiteID">
-      <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -109,7 +100,7 @@
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="D:\Projects\Open Data\Stackoverflow\Import\" />
+              Folder="D:\Data\" />
             <FEFEProperty
               FileSpec="*.xml" />
             <FEFEProperty
@@ -121,34 +112,6 @@
       </DTS:ForEachEnumerator>
       <DTS:Variables />
       <DTS:Executables>
-        <DTS:Executable
-          DTS:refId="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{420C42AF-E05A-4F05-9443-72080C9FFA0E}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Add Site and get SiteID"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{B4757834-50D8-49AA-AFD3-87B483FAB6A0}"
-              SQLTask:SqlStatementSource="EXEC dbo.usp_AddSite ?"
-              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-              <SQLTask:ResultBinding
-                SQLTask:ResultName="SiteID"
-                SQLTask:DtsVariableName="User::SiteID" />
-              <SQLTask:ParameterBinding
-                SQLTask:ParameterName="@Name"
-                SQLTask:DtsVariableName="User::SiteName"
-                SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="130"
-                SQLTask:ParameterSize="250" />
-            </SQLTask:SqlTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\FEL - Foreach File in Import Directory\Badges"
           DTS:CreationName="Microsoft.Pipeline"
@@ -166,79 +129,6 @@
             <pipeline
               version="1">
               <components>
-                <component
-                  refId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Add SiteID"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          dataType="i2"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          name="SiteID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[User::SiteID]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[User::SiteID]</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
                 <component
                   refId="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB"
                   componentClassID="Microsoft.OLEDBDestination"
@@ -285,7 +175,7 @@
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepNulls">false</property>
+                      name="FastLoadKeepNulls">true</property>
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
@@ -349,12 +239,6 @@
                           cachedName="TagBased"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[TagBased]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Badges\XML Source File.Outputs[row].Columns[TagBased]" />
-                        <inputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB.Inputs[OLE DB Destination Input].Columns[SiteID]"
-                          cachedDataType="i2"
-                          cachedName="SiteID"
-                          externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -362,10 +246,6 @@
                           refId="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
                           dataType="i8"
                           name="Id" />
-                        <externalMetadataColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          dataType="ui1"
-                          name="SiteID" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[UserId]"
                           dataType="i8"
@@ -445,7 +325,7 @@
                       dataType="System.String"
                       description="The XML schema definition used by the XML source adapter."
                       expressionType="Notify"
-                      name="XMLSchemaDefinition">D:\Projects\Open Data\Stackoverflow\Import\XSD Files\Badges.xsd</property>
+                      name="XMLSchemaDefinition">D:\Data\XSD Files\Badges.xsd</property>
                     <property
                       dataType="System.Boolean"
                       description="Identifies whether or not to use inline schema."
@@ -683,13 +563,8 @@
               </components>
               <paths>
                 <path
-                  refId="Package\FEL - Foreach File in Import Directory\Badges.Paths[Derived Column Output]"
-                  endId="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB.Inputs[OLE DB Destination Input]"
-                  name="Derived Column Output"
-                  startId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Outputs[Derived Column Output]" />
-                <path
                   refId="Package\FEL - Foreach File in Import Directory\Badges.Paths[row]"
-                  endId="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID.Inputs[Derived Column Input]"
+                  endId="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB.Inputs[OLE DB Destination Input]"
                   name="row"
                   startId="Package\FEL - Foreach File in Import Directory\Badges\XML Source File.Outputs[row]" />
               </paths>
@@ -713,79 +588,6 @@
             <pipeline
               version="1">
               <components>
-                <component
-                  refId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Add SiteID"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          dataType="i2"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          name="SiteID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[User::SiteID]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[User::SiteID]</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
                 <component
                   refId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB"
                   componentClassID="Microsoft.OLEDBDestination"
@@ -832,7 +634,7 @@
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepNulls">false</property>
+                      name="FastLoadKeepNulls">true</property>
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
@@ -871,12 +673,6 @@
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[UserId]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Comments\XML Source File.Outputs[row].Columns[UserId]" />
                         <inputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].Columns[SiteID]"
-                          cachedDataType="i2"
-                          cachedName="SiteID"
-                          externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]" />
-                        <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].Columns[PostId]"
                           cachedDataType="ui4"
                           cachedName="PostId"
@@ -884,7 +680,7 @@
                           lineageId="Package\FEL - Foreach File in Import Directory\Comments\XML Source File.Outputs[row].Columns[PostId]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Score]"
-                          cachedDataType="ui1"
+                          cachedDataType="ui4"
                           cachedName="Score"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Score]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Comments\XML Source File.Outputs[row].Columns[Score]" />
@@ -915,10 +711,6 @@
                           dataType="i8"
                           name="Id" />
                         <externalMetadataColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          dataType="ui1"
-                          name="SiteID" />
-                        <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[UserId]"
                           dataType="i8"
                           name="UserId" />
@@ -928,7 +720,7 @@
                           name="PostId" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Score]"
-                          dataType="ui1"
+                          dataType="i2"
                           name="Score" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Text]"
@@ -1000,7 +792,7 @@
                       dataType="System.String"
                       description="The XML schema definition used by the XML source adapter."
                       expressionType="Notify"
-                      name="XMLSchemaDefinition">D:\Projects\Open Data\Stackoverflow\Import\XSD Files\Comments.xsd</property>
+                      name="XMLSchemaDefinition">D:\Data\XSD Files\Comments.xsd</property>
                     <property
                       dataType="System.Boolean"
                       description="Identifies whether or not to use inline schema."
@@ -1042,7 +834,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Comments\XML Source File.Outputs[row].Columns[Score]"
-                          dataType="ui1"
+                          dataType="ui4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Comments\XML Source File.Outputs[row].ExternalColumns[Score]"
@@ -1111,12 +903,12 @@
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Comments\XML Source File.Outputs[row].ExternalColumns[Score]"
-                          dataType="ui1"
+                          dataType="ui4"
                           name="Score">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.Byte</property>
+                              name="CLRType">System.UInt32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -1265,13 +1057,8 @@
               </components>
               <paths>
                 <path
-                  refId="Package\FEL - Foreach File in Import Directory\Comments.Paths[Derived Column Output]"
-                  endId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input]"
-                  name="Derived Column Output"
-                  startId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Outputs[Derived Column Output]" />
-                <path
                   refId="Package\FEL - Foreach File in Import Directory\Comments.Paths[row]"
-                  endId="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID.Inputs[Derived Column Input]"
+                  endId="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB.Inputs[OLE DB Destination Input]"
                   name="row"
                   startId="Package\FEL - Foreach File in Import Directory\Comments\XML Source File.Outputs[row]" />
               </paths>
@@ -1279,10 +1066,41 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
+          DTS:refId="Package\FEL - Foreach File in Import Directory\Log Import"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{420C42AF-E05A-4F05-9443-72080C9FFA0E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Import"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B4757834-50D8-49AA-AFD3-87B483FAB6A0}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[usp_LogImport] ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Folder"
+                SQLTask:DtsVariableName="User::SiteName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="250" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Table"
+                SQLTask:DtsVariableName="User::TableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="250" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\FEL - Foreach File in Import Directory\PostHistory"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
+          DTS:Disabled="True"
           DTS:DTSID="{8987dc6d-810a-4045-ae30-5ca65bcf504a}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -1295,79 +1113,6 @@
             <pipeline
               version="1">
               <components>
-                <component
-                  refId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Add SiteID"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          dataType="i2"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          name="SiteID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[User::SiteID]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[User::SiteID]</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
                 <component
                   refId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB"
                   componentClassID="Microsoft.OLEDBDestination"
@@ -1414,7 +1159,7 @@
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepNulls">false</property>
+                      name="FastLoadKeepNulls">true</property>
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
@@ -1442,7 +1187,7 @@
                       <inputColumns>
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Id]"
-                          cachedDataType="ui4"
+                          cachedDataType="i4"
                           cachedName="Id"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
                           lineageId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].Columns[Id]" />
@@ -1453,14 +1198,8 @@
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[UserId]"
                           lineageId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].Columns[UserId]" />
                         <inputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].Columns[SiteID]"
-                          cachedDataType="i4"
-                          cachedName="SiteID"
-                          externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          lineageId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]" />
-                        <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].Columns[PostId]"
-                          cachedDataType="ui4"
+                          cachedDataType="i4"
                           cachedName="PostId"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[PostId]"
                           lineageId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].Columns[PostId]" />
@@ -1485,7 +1224,7 @@
                           lineageId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].Columns[UserDisplayName]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].Columns[PostHistoryTypeId]"
-                          cachedDataType="ui1"
+                          cachedDataType="i4"
                           cachedName="PostHistoryTypeId"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[PostHistoryTypeId]"
                           lineageId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].Columns[PostHistoryTypeId]" />
@@ -1510,12 +1249,8 @@
                           dataType="i8"
                           name="Id" />
                         <externalMetadataColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          dataType="ui1"
-                          name="SiteID" />
-                        <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[UserId]"
-                          dataType="i4"
+                          dataType="i8"
                           name="UserId" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[PostId]"
@@ -1604,7 +1339,7 @@
                       dataType="System.String"
                       description="The XML schema definition used by the XML source adapter."
                       expressionType="Notify"
-                      name="XMLSchemaDefinition">D:\Projects\Open Data\Stackoverflow\Import\XSD Files\PostHistory.xsd</property>
+                      name="XMLSchemaDefinition">D:\Data\XSD Files\PostHistory.xsd</property>
                     <property
                       dataType="System.Boolean"
                       description="Identifies whether or not to use inline schema."
@@ -1628,7 +1363,7 @@
                       <outputColumns>
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].Columns[Id]"
-                          dataType="ui4"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].ExternalColumns[Id]"
@@ -1637,7 +1372,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].Columns[PostHistoryTypeId]"
-                          dataType="ui1"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].ExternalColumns[PostHistoryTypeId]"
@@ -1646,7 +1381,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].Columns[PostId]"
-                          dataType="ui4"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].ExternalColumns[PostId]"
@@ -1714,32 +1449,32 @@
                         isUsed="True">
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].ExternalColumns[Id]"
-                          dataType="ui4"
+                          dataType="i4"
                           name="Id">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt32</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].ExternalColumns[PostHistoryTypeId]"
-                          dataType="ui1"
+                          dataType="i4"
                           name="PostHistoryTypeId">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.Byte</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row].ExternalColumns[PostId]"
-                          dataType="ui4"
+                          dataType="i4"
                           name="PostId">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt32</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -1929,13 +1664,8 @@
               </components>
               <paths>
                 <path
-                  refId="Package\FEL - Foreach File in Import Directory\PostHistory.Paths[Derived Column Output]"
-                  endId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input]"
-                  name="Derived Column Output"
-                  startId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Outputs[Derived Column Output]" />
-                <path
                   refId="Package\FEL - Foreach File in Import Directory\PostHistory.Paths[row]"
-                  endId="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID.Inputs[Derived Column Input]"
+                  endId="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB.Inputs[OLE DB Destination Input]"
                   name="row"
                   startId="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File.Outputs[row]" />
               </paths>
@@ -1959,79 +1689,6 @@
             <pipeline
               version="1">
               <components>
-                <component
-                  refId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Add SiteID"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          dataType="i2"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          name="SiteID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[User::SiteID]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[User::SiteID]</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
                 <component
                   refId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB"
                   componentClassID="Microsoft.OLEDBDestination"
@@ -2078,7 +1735,7 @@
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepNulls">false</property>
+                      name="FastLoadKeepNulls">true</property>
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
@@ -2111,12 +1768,6 @@
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
                           lineageId="Package\FEL - Foreach File in Import Directory\PostLinks\XML Source File.Outputs[row].Columns[Id]" />
                         <inputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB.Inputs[OLE DB Destination Input].Columns[SiteID]"
-                          cachedDataType="i2"
-                          cachedName="SiteID"
-                          externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          lineageId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]" />
-                        <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB.Inputs[OLE DB Destination Input].Columns[PostId]"
                           cachedDataType="ui4"
                           cachedName="PostId"
@@ -2147,10 +1798,6 @@
                           refId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
                           dataType="i8"
                           name="Id" />
-                        <externalMetadataColumn
-                          refId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          dataType="ui1"
-                          name="SiteID" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[PostId]"
                           dataType="i8"
@@ -2224,7 +1871,7 @@
                       dataType="System.String"
                       description="The XML schema definition used by the XML source adapter."
                       expressionType="Notify"
-                      name="XMLSchemaDefinition">D:\Projects\Open Data\Stackoverflow\Import\XSD Files\PostLinks.xsd</property>
+                      name="XMLSchemaDefinition">D:\Data\XSD Files\PostLinks.xsd</property>
                     <property
                       dataType="System.Boolean"
                       description="Identifies whether or not to use inline schema."
@@ -2429,13 +2076,8 @@
               </components>
               <paths>
                 <path
-                  refId="Package\FEL - Foreach File in Import Directory\PostLinks.Paths[Derived Column Output]"
-                  endId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB.Inputs[OLE DB Destination Input]"
-                  name="Derived Column Output"
-                  startId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Outputs[Derived Column Output]" />
-                <path
                   refId="Package\FEL - Foreach File in Import Directory\PostLinks.Paths[row]"
-                  endId="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID.Inputs[Derived Column Input]"
+                  endId="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB.Inputs[OLE DB Destination Input]"
                   name="row"
                   startId="Package\FEL - Foreach File in Import Directory\PostLinks\XML Source File.Outputs[row]" />
               </paths>
@@ -2459,79 +2101,6 @@
             <pipeline
               version="1">
               <components>
-                <component
-                  refId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Add SiteID"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          dataType="i2"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          name="SiteID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[User::SiteID]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[User::SiteID]</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
                 <component
                   refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB"
                   componentClassID="Microsoft.OLEDBDestination"
@@ -2578,7 +2147,7 @@
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepNulls">false</property>
+                      name="FastLoadKeepNulls">true</property>
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
@@ -2606,16 +2175,10 @@
                       <inputColumns>
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Id]"
-                          cachedDataType="ui4"
+                          cachedDataType="i4"
                           cachedName="Id"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[Id]" />
-                        <inputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[SiteID]"
-                          cachedDataType="i2"
-                          cachedName="SiteID"
-                          externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Score]"
                           cachedDataType="i2"
@@ -2636,7 +2199,7 @@
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[PostTypeId]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[ViewCount]"
-                          cachedDataType="ui4"
+                          cachedDataType="i4"
                           cachedName="ViewCount"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[ViewCount]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[ViewCount]" />
@@ -2661,38 +2224,38 @@
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Title]"
                           cachedDataType="wstr"
-                          cachedLength="255"
+                          cachedLength="500"
                           cachedName="Title"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[Title]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Tags]"
                           cachedDataType="wstr"
-                          cachedLength="255"
+                          cachedLength="250"
                           cachedName="Tags"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Tags]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[Tags]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[AnswerCount]"
-                          cachedDataType="ui1"
+                          cachedDataType="i4"
                           cachedName="AnswerCount"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[AnswerCount]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[AnswerCount]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[CommentCount]"
-                          cachedDataType="ui1"
+                          cachedDataType="i4"
                           cachedName="CommentCount"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[CommentCount]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[CommentCount]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[FavoriteCount]"
-                          cachedDataType="ui1"
+                          cachedDataType="i4"
                           cachedName="FavoriteCount"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[FavoriteCount]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[FavoriteCount]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[AcceptedAnswerId]"
-                          cachedDataType="ui4"
+                          cachedDataType="i4"
                           cachedName="AcceptedAnswerId"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[AcceptedAnswerId]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[AcceptedAnswerId]" />
@@ -2710,7 +2273,7 @@
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[LastEditDate]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[ParentId]"
-                          cachedDataType="ui4"
+                          cachedDataType="i4"
                           cachedName="ParentId"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[ParentId]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[ParentId]" />
@@ -2729,14 +2292,14 @@
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[OwnerDisplayName]"
                           cachedDataType="wstr"
-                          cachedLength="255"
+                          cachedLength="100"
                           cachedName="OwnerDisplayName"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[OwnerDisplayName]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[OwnerDisplayName]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].Columns[LastEditorDisplayName]"
                           cachedDataType="wstr"
-                          cachedLength="255"
+                          cachedLength="100"
                           cachedName="LastEditorDisplayName"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[LastEditorDisplayName]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[LastEditorDisplayName]" />
@@ -2747,10 +2310,6 @@
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
                           dataType="i8"
                           name="Id" />
-                        <externalMetadataColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          dataType="ui1"
-                          name="SiteID" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Score]"
                           dataType="i2"
@@ -2765,7 +2324,7 @@
                           name="PostTypeId" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[ViewCount]"
-                          dataType="i8"
+                          dataType="i4"
                           name="ViewCount" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Body]"
@@ -2773,7 +2332,7 @@
                           name="Body" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[OwnerUserId]"
-                          dataType="i4"
+                          dataType="i8"
                           name="OwnerUserId" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[LastActivityDate]"
@@ -2782,24 +2341,24 @@
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
                           dataType="wstr"
-                          length="255"
+                          length="500"
                           name="Title" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Tags]"
                           dataType="wstr"
-                          length="255"
+                          length="250"
                           name="Tags" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[AnswerCount]"
-                          dataType="ui1"
+                          dataType="i2"
                           name="AnswerCount" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[CommentCount]"
-                          dataType="ui1"
+                          dataType="i2"
                           name="CommentCount" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[FavoriteCount]"
-                          dataType="ui1"
+                          dataType="i2"
                           name="FavoriteCount" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[AcceptedAnswerId]"
@@ -2807,7 +2366,7 @@
                           name="AcceptedAnswerId" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[LastEditorUserId]"
-                          dataType="i4"
+                          dataType="i8"
                           name="LastEditorUserId" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[LastEditDate]"
@@ -2828,12 +2387,12 @@
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[OwnerDisplayName]"
                           dataType="wstr"
-                          length="255"
+                          length="100"
                           name="OwnerDisplayName" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[LastEditorDisplayName]"
                           dataType="wstr"
-                          length="255"
+                          length="100"
                           name="LastEditorDisplayName" />
                       </externalMetadataColumns>
                     </input>
@@ -2892,7 +2451,7 @@
                       dataType="System.String"
                       description="The XML schema definition used by the XML source adapter."
                       expressionType="Notify"
-                      name="XMLSchemaDefinition">D:\Projects\Open Data\Stackoverflow\Import\XSD Files\Posts.xsd</property>
+                      name="XMLSchemaDefinition">D:\Data\XSD Files\Posts.xsd</property>
                     <property
                       dataType="System.Boolean"
                       description="Identifies whether or not to use inline schema."
@@ -2916,7 +2475,7 @@
                       <outputColumns>
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[Id]"
-                          dataType="ui4"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[Id]"
@@ -2952,7 +2511,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[ViewCount]"
-                          dataType="ui4"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[ViewCount]"
@@ -2992,7 +2551,7 @@
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[Title]"
-                          length="255"
+                          length="500"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[Title]"
                           name="Title"
                           truncationRowDisposition="FailComponent" />
@@ -3002,13 +2561,13 @@
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[Tags]"
-                          length="255"
+                          length="250"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[Tags]"
                           name="Tags"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[AnswerCount]"
-                          dataType="ui1"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[AnswerCount]"
@@ -3017,7 +2576,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[CommentCount]"
-                          dataType="ui1"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[CommentCount]"
@@ -3026,7 +2585,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[FavoriteCount]"
-                          dataType="ui1"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[FavoriteCount]"
@@ -3035,7 +2594,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[AcceptedAnswerId]"
-                          dataType="ui4"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[AcceptedAnswerId]"
@@ -3062,7 +2621,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[ParentId]"
-                          dataType="ui4"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[ParentId]"
@@ -3093,7 +2652,7 @@
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[OwnerDisplayName]"
-                          length="255"
+                          length="100"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[OwnerDisplayName]"
                           name="OwnerDisplayName"
                           truncationRowDisposition="FailComponent" />
@@ -3103,7 +2662,7 @@
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[LastEditorDisplayName]"
-                          length="255"
+                          length="100"
                           lineageId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].Columns[LastEditorDisplayName]"
                           name="LastEditorDisplayName"
                           truncationRowDisposition="FailComponent" />
@@ -3112,12 +2671,12 @@
                         isUsed="True">
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[Id]"
-                          dataType="ui4"
+                          dataType="i4"
                           name="Id">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt32</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -3152,12 +2711,12 @@
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[ViewCount]"
-                          dataType="ui4"
+                          dataType="i4"
                           name="ViewCount">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt32</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -3193,7 +2752,7 @@
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[Title]"
                           dataType="wstr"
-                          length="255"
+                          length="500"
                           name="Title">
                           <properties>
                             <property
@@ -3204,7 +2763,7 @@
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[Tags]"
                           dataType="wstr"
-                          length="255"
+                          length="250"
                           name="Tags">
                           <properties>
                             <property
@@ -3214,42 +2773,42 @@
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[AnswerCount]"
-                          dataType="ui1"
+                          dataType="i4"
                           name="AnswerCount">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.Byte</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[CommentCount]"
-                          dataType="ui1"
+                          dataType="i4"
                           name="CommentCount">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.Byte</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[FavoriteCount]"
-                          dataType="ui1"
+                          dataType="i4"
                           name="FavoriteCount">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.Byte</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[AcceptedAnswerId]"
-                          dataType="ui4"
+                          dataType="i4"
                           name="AcceptedAnswerId">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt32</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -3274,12 +2833,12 @@
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[ParentId]"
-                          dataType="ui4"
+                          dataType="i4"
                           name="ParentId">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt32</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -3305,7 +2864,7 @@
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[OwnerDisplayName]"
                           dataType="wstr"
-                          length="255"
+                          length="100"
                           name="OwnerDisplayName">
                           <properties>
                             <property
@@ -3316,7 +2875,7 @@
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row].ExternalColumns[LastEditorDisplayName]"
                           dataType="wstr"
-                          length="255"
+                          length="100"
                           name="LastEditorDisplayName">
                           <properties>
                             <property
@@ -3569,13 +3128,8 @@
               </components>
               <paths>
                 <path
-                  refId="Package\FEL - Foreach File in Import Directory\Posts.Paths[Derived Column Output]"
-                  endId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input]"
-                  name="Derived Column Output"
-                  startId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Outputs[Derived Column Output]" />
-                <path
                   refId="Package\FEL - Foreach File in Import Directory\Posts.Paths[row]"
-                  endId="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID.Inputs[Derived Column Input]"
+                  endId="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB.Inputs[OLE DB Destination Input]"
                   name="row"
                   startId="Package\FEL - Foreach File in Import Directory\Posts\XML Source File.Outputs[row]" />
               </paths>
@@ -3599,79 +3153,6 @@
             <pipeline
               version="1">
               <components>
-                <component
-                  refId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Add SiteID"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          dataType="i2"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          name="SiteID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[User::SiteID]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[User::SiteID]</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
                 <component
                   refId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB"
                   componentClassID="Microsoft.OLEDBDestination"
@@ -3718,7 +3199,7 @@
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepNulls">false</property>
+                      name="FastLoadKeepNulls">true</property>
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
@@ -3746,16 +3227,10 @@
                       <inputColumns>
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Id]"
-                          cachedDataType="ui2"
+                          cachedDataType="ui4"
                           cachedName="Id"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row].Columns[Id]" />
-                        <inputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].Columns[SiteID]"
-                          cachedDataType="i2"
-                          cachedName="SiteID"
-                          externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].Columns[TagName]"
                           cachedDataType="wstr"
@@ -3765,7 +3240,7 @@
                           lineageId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row].Columns[TagName]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Count]"
-                          cachedDataType="ui2"
+                          cachedDataType="ui4"
                           cachedName="Count"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Count]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row].Columns[Count]" />
@@ -3788,10 +3263,6 @@
                           refId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
                           dataType="i4"
                           name="Id" />
-                        <externalMetadataColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          dataType="ui1"
-                          name="SiteID" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[TagName]"
                           dataType="wstr"
@@ -3866,7 +3337,7 @@
                       dataType="System.String"
                       description="The XML schema definition used by the XML source adapter."
                       expressionType="Notify"
-                      name="XMLSchemaDefinition">D:\Projects\Open Data\Stackoverflow\Import\XSD Files\Tags.xsd</property>
+                      name="XMLSchemaDefinition">D:\Data\XSD Files\Tags.xsd</property>
                     <property
                       dataType="System.Boolean"
                       description="Identifies whether or not to use inline schema."
@@ -3890,7 +3361,7 @@
                       <outputColumns>
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row].Columns[Id]"
-                          dataType="ui2"
+                          dataType="ui4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row].ExternalColumns[Id]"
@@ -3909,7 +3380,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row].Columns[Count]"
-                          dataType="ui2"
+                          dataType="ui4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row].ExternalColumns[Count]"
@@ -3939,12 +3410,12 @@
                         isUsed="True">
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row].ExternalColumns[Id]"
-                          dataType="ui2"
+                          dataType="ui4"
                           name="Id">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt16</property>
+                              name="CLRType">System.UInt32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -3960,12 +3431,12 @@
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row].ExternalColumns[Count]"
-                          dataType="ui2"
+                          dataType="ui4"
                           name="Count">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt16</property>
+                              name="CLRType">System.UInt32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -4073,13 +3544,8 @@
               </components>
               <paths>
                 <path
-                  refId="Package\FEL - Foreach File in Import Directory\Tags.Paths[Derived Column Output]"
-                  endId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input]"
-                  name="Derived Column Output"
-                  startId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Outputs[Derived Column Output]" />
-                <path
                   refId="Package\FEL - Foreach File in Import Directory\Tags.Paths[row]"
-                  endId="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID.Inputs[Derived Column Input]"
+                  endId="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB.Inputs[OLE DB Destination Input]"
                   name="row"
                   startId="Package\FEL - Foreach File in Import Directory\Tags\XML Source File.Outputs[row]" />
               </paths>
@@ -4103,79 +3569,6 @@
             <pipeline
               version="1">
               <components>
-                <component
-                  refId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Add SiteID"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          dataType="i2"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          name="SiteID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[User::SiteID]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[User::SiteID]</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
                 <component
                   refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB"
                   componentClassID="Microsoft.OLEDBDestination"
@@ -4222,7 +3615,7 @@
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepNulls">false</property>
+                      name="FastLoadKeepNulls">true</property>
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
@@ -4255,12 +3648,6 @@
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[Id]" />
                         <inputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].Columns[SiteID]"
-                          cachedDataType="i2"
-                          cachedName="SiteID"
-                          externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]" />
-                        <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].Columns[CreationDate]"
                           cachedDataType="dbTimeStamp"
                           cachedName="CreationDate"
@@ -4268,7 +3655,7 @@
                           lineageId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[CreationDate]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Reputation]"
-                          cachedDataType="ui4"
+                          cachedDataType="i4"
                           cachedName="Reputation"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Reputation]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[Reputation]" />
@@ -4307,19 +3694,19 @@
                           lineageId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[AboutMe]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Views]"
-                          cachedDataType="ui2"
+                          cachedDataType="i4"
                           cachedName="Views"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Views]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[Views]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].Columns[UpVotes]"
-                          cachedDataType="ui2"
+                          cachedDataType="i4"
                           cachedName="UpVotes"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[UpVotes]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[UpVotes]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].Columns[DownVotes]"
-                          cachedDataType="ui2"
+                          cachedDataType="i4"
                           cachedName="DownVotes"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[DownVotes]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[DownVotes]" />
@@ -4331,7 +3718,7 @@
                           lineageId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[AccountId]" />
                         <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].Columns[Age]"
-                          cachedDataType="ui1"
+                          cachedDataType="i8"
                           cachedName="Age"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[Age]" />
@@ -4347,12 +3734,8 @@
                         isUsed="True">
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
-                          dataType="i4"
+                          dataType="i8"
                           name="Id" />
-                        <externalMetadataColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          dataType="ui1"
-                          name="SiteID" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[CreationDate]"
                           dataType="dbTimeStamp"
@@ -4402,7 +3785,7 @@
                           name="AccountId" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
-                          dataType="ui1"
+                          dataType="i4"
                           name="Age" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[ProfileImageUrl]"
@@ -4466,7 +3849,7 @@
                       dataType="System.String"
                       description="The XML schema definition used by the XML source adapter."
                       expressionType="Notify"
-                      name="XMLSchemaDefinition">D:\Projects\Open Data\Stackoverflow\Import\XSD Files\Users.xsd</property>
+                      name="XMLSchemaDefinition">D:\Data\XSD Files\Users.xsd</property>
                     <property
                       dataType="System.Boolean"
                       description="Identifies whether or not to use inline schema."
@@ -4499,7 +3882,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[Reputation]"
-                          dataType="ui4"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[Reputation]"
@@ -4565,7 +3948,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[Views]"
-                          dataType="ui2"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[Views]"
@@ -4574,7 +3957,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[UpVotes]"
-                          dataType="ui2"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[UpVotes]"
@@ -4583,7 +3966,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[DownVotes]"
-                          dataType="ui2"
+                          dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[DownVotes]"
@@ -4601,7 +3984,7 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].Columns[Age]"
-                          dataType="ui1"
+                          dataType="i8"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[Age]"
@@ -4633,12 +4016,12 @@
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[Reputation]"
-                          dataType="ui4"
+                          dataType="i4"
                           name="Reputation">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt32</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -4706,32 +4089,32 @@
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[Views]"
-                          dataType="ui2"
+                          dataType="i4"
                           name="Views">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt16</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[UpVotes]"
-                          dataType="ui2"
+                          dataType="i4"
                           name="UpVotes">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt16</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[DownVotes]"
-                          dataType="ui2"
+                          dataType="i4"
                           name="DownVotes">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.UInt16</property>
+                              name="CLRType">System.Int32</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -4746,12 +4129,12 @@
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row].ExternalColumns[Age]"
-                          dataType="ui1"
+                          dataType="i8"
                           name="Age">
                           <properties>
                             <property
                               dataType="System.String"
-                              name="CLRType">System.Byte</property>
+                              name="CLRType">System.Int64</property>
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
@@ -4940,13 +4323,8 @@
               </components>
               <paths>
                 <path
-                  refId="Package\FEL - Foreach File in Import Directory\Users.Paths[Derived Column Output]"
-                  endId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input]"
-                  name="Derived Column Output"
-                  startId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Outputs[Derived Column Output]" />
-                <path
                   refId="Package\FEL - Foreach File in Import Directory\Users.Paths[row]"
-                  endId="Package\FEL - Foreach File in Import Directory\Users\Add SiteID.Inputs[Derived Column Input]"
+                  endId="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB.Inputs[OLE DB Destination Input]"
                   name="row"
                   startId="Package\FEL - Foreach File in Import Directory\Users\XML Source File.Outputs[row]" />
               </paths>
@@ -4970,79 +4348,6 @@
             <pipeline
               version="1">
               <components>
-                <component
-                  refId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Add SiteID"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          dataType="i2"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]"
-                          name="SiteID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[User::SiteID]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[User::SiteID]</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
                 <component
                   refId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB"
                   componentClassID="Microsoft.OLEDBDestination"
@@ -5089,7 +4394,7 @@
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                      name="FastLoadKeepNulls">false</property>
+                      name="FastLoadKeepNulls">true</property>
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
@@ -5128,12 +4433,6 @@
                           externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[UserId]"
                           lineageId="Package\FEL - Foreach File in Import Directory\Votes\XML Source File.Outputs[row].Columns[UserId]" />
                         <inputColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB.Inputs[OLE DB Destination Input].Columns[SiteID]"
-                          cachedDataType="i2"
-                          cachedName="SiteID"
-                          externalMetadataColumnId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          lineageId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Output].Columns[SiteID]" />
-                        <inputColumn
                           refId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB.Inputs[OLE DB Destination Input].Columns[PostId]"
                           cachedDataType="ui4"
                           cachedName="PostId"
@@ -5165,12 +4464,8 @@
                           dataType="i8"
                           name="Id" />
                         <externalMetadataColumn
-                          refId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
-                          dataType="ui1"
-                          name="SiteID" />
-                        <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[UserId]"
-                          dataType="i4"
+                          dataType="i8"
                           name="UserId" />
                         <externalMetadataColumn
                           refId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB.Inputs[OLE DB Destination Input].ExternalColumns[PostId]"
@@ -5245,7 +4540,7 @@
                       dataType="System.String"
                       description="The XML schema definition used by the XML source adapter."
                       expressionType="Notify"
-                      name="XMLSchemaDefinition">D:\Projects\Open Data\Stackoverflow\Import\XSD Files\Votes.xsd</property>
+                      name="XMLSchemaDefinition">D:\Data\XSD Files\Votes.xsd</property>
                     <property
                       dataType="System.Boolean"
                       description="Identifies whether or not to use inline schema."
@@ -5479,13 +4774,8 @@
               </components>
               <paths>
                 <path
-                  refId="Package\FEL - Foreach File in Import Directory\Votes.Paths[Derived Column Output]"
-                  endId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB.Inputs[OLE DB Destination Input]"
-                  name="Derived Column Output"
-                  startId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Outputs[Derived Column Output]" />
-                <path
                   refId="Package\FEL - Foreach File in Import Directory\Votes.Paths[row]"
-                  endId="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID.Inputs[Derived Column Input]"
+                  endId="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB.Inputs[OLE DB Destination Input]"
                   name="row"
                   startId="Package\FEL - Foreach File in Import Directory\Votes\XML Source File.Outputs[row]" />
               </paths>
@@ -5500,7 +4790,7 @@
           DTS:DTSID="{EBAACD15-A6C1-49D2-B30E-1DAD26F036F3}"
           DTS:EvalOp="1"
           DTS:Expression="UPPER(@[User::TableName])  == &quot;BADGES&quot;"
-          DTS:From="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
+          DTS:From="Package\FEL - Foreach File in Import Directory\Log Import"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
           DTS:To="Package\FEL - Foreach File in Import Directory\Badges" />
@@ -5510,7 +4800,7 @@
           DTS:DTSID="{0C32DC36-0997-49E4-A85D-48744D5D0A7F}"
           DTS:EvalOp="1"
           DTS:Expression="UPPER(@[User::TableName])  == &quot;COMMENTS&quot;"
-          DTS:From="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
+          DTS:From="Package\FEL - Foreach File in Import Directory\Log Import"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
           DTS:To="Package\FEL - Foreach File in Import Directory\Comments" />
@@ -5520,7 +4810,7 @@
           DTS:DTSID="{A38DAC67-5945-4736-8DC2-7A4D087176B8}"
           DTS:EvalOp="1"
           DTS:Expression="UPPER(@[User::TableName])  == &quot;POSTS&quot;"
-          DTS:From="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
+          DTS:From="Package\FEL - Foreach File in Import Directory\Log Import"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"
           DTS:To="Package\FEL - Foreach File in Import Directory\Posts" />
@@ -5530,7 +4820,7 @@
           DTS:DTSID="{ECD50F45-E984-45EE-976D-1F0006EF3FF4}"
           DTS:EvalOp="1"
           DTS:Expression="UPPER(@[User::TableName])  == &quot;POSTHISTORY&quot;"
-          DTS:From="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
+          DTS:From="Package\FEL - Foreach File in Import Directory\Log Import"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
           DTS:To="Package\FEL - Foreach File in Import Directory\PostHistory" />
@@ -5540,7 +4830,7 @@
           DTS:DTSID="{A0A1515D-709D-4EA5-AF89-DA64BEE8F598}"
           DTS:EvalOp="1"
           DTS:Expression="UPPER(@[User::TableName])  == &quot;POSTLINKS&quot;"
-          DTS:From="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
+          DTS:From="Package\FEL - Foreach File in Import Directory\Log Import"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 4"
           DTS:To="Package\FEL - Foreach File in Import Directory\PostLinks" />
@@ -5550,7 +4840,7 @@
           DTS:DTSID="{5EF25625-76DC-4DBD-94BB-28A0398FBDE3}"
           DTS:EvalOp="1"
           DTS:Expression="UPPER(@[User::TableName])  == &quot;TAGS&quot;"
-          DTS:From="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
+          DTS:From="Package\FEL - Foreach File in Import Directory\Log Import"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 5"
           DTS:To="Package\FEL - Foreach File in Import Directory\Tags" />
@@ -5560,7 +4850,7 @@
           DTS:DTSID="{B4001679-F2BE-47B9-8767-EF15C193AA49}"
           DTS:EvalOp="1"
           DTS:Expression="UPPER(@[User::TableName])  == &quot;USERS&quot;"
-          DTS:From="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
+          DTS:From="Package\FEL - Foreach File in Import Directory\Log Import"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 6"
           DTS:To="Package\FEL - Foreach File in Import Directory\Users" />
@@ -5570,7 +4860,7 @@
           DTS:DTSID="{6597CCDD-98C8-4B77-A4CE-739A0FC9459C}"
           DTS:EvalOp="1"
           DTS:Expression="UPPER(@[User::TableName])  == &quot;VOTES&quot;"
-          DTS:From="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
+          DTS:From="Package\FEL - Foreach File in Import Directory\Log Import"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 7"
           DTS:To="Package\FEL - Foreach File in Import Directory\Votes" />
@@ -5616,13 +4906,13 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="162,42"
+          Id="Package\Add Relationships"
+          TopLeft="809,294" />
+        <NodeLayout
           Size="139,42"
           Id="Package\Clean Tables"
           TopLeft="62,293" />
-        <NodeLayout
-          Size="189,42"
-          Id="Package\FEL - Foreach File in Import Directory\Add Site and get SiteID"
-          TopLeft="28,215" />
         <NodeLayout
           Size="113,42"
           Id="Package\FEL - Foreach File in Import Directory\Badges"
@@ -5631,70 +4921,10 @@
           Size="129,42"
           Id="Package\FEL - Foreach File in Import Directory\Comments"
           TopLeft="160,29" />
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint]"
-          TopLeft="80.375,215">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,-145"
-              Start="0,0"
-              End="0,-137.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-137.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,-76.75,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint 1]"
-          TopLeft="122.5,215">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="102,-144"
-              Start="0,0"
-              End="102,-136.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-68" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-68"
-                    Point2="0,-72"
-                    Point3="4,-72" />
-                  <mssgle:LineSegment
-                    End="98,-72" />
-                  <mssgle:CubicBezierSegment
-                    Point1="98,-72"
-                    Point2="102,-72"
-                    Point3="102,-76" />
-                  <mssgle:LineSegment
-                    End="102,-136.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="43,-67,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
-          Size="104,42"
-          Id="Package\FEL - Foreach File in Import Directory\Posts"
-          TopLeft="267,97" />
+          Size="131,42"
+          Id="Package\FEL - Foreach File in Import Directory\Log Import"
+          TopLeft="28,215" />
         <NodeLayout
           Size="132,42"
           Id="Package\FEL - Foreach File in Import Directory\PostHistory"
@@ -5703,6 +4933,10 @@
           Size="123,42"
           Id="Package\FEL - Foreach File in Import Directory\PostLinks"
           TopLeft="361,247" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\FEL - Foreach File in Import Directory\Posts"
+          TopLeft="267,97" />
         <NodeLayout
           Size="101,42"
           Id="Package\FEL - Foreach File in Import Directory\Tags"
@@ -5716,158 +4950,230 @@
           Id="Package\FEL - Foreach File in Import Directory\Votes"
           TopLeft="22,424" />
         <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint 2]"
-          TopLeft="167.75,215">
+          Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint]"
+          TopLeft="62.75,215">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="151.25,-76"
+              EndConnector="20.75,-145"
               Start="0,0"
-              End="151.25,-68.5">
+              End="20.75,-137.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-22.0382608695652" />
+                    End="0,-46.2618453865337" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-22.0382608695652"
-                    Point2="0,-26.0382608695652"
-                    Point3="4,-26.0382608695652" />
+                    Point1="0,-46.2618453865337"
+                    Point2="0,-50.2618453865337"
+                    Point3="4,-50.2618453865337" />
                   <mssgle:LineSegment
-                    End="147.25,-26.0382608695652" />
+                    End="16.75,-50.2618453865337" />
                   <mssgle:CubicBezierSegment
-                    Point1="147.25,-26.0382608695652"
-                    Point2="151.25,-26.0382608695652"
-                    Point3="151.25,-30.0382608695652" />
+                    Point1="16.75,-50.2618453865337"
+                    Point2="20.75,-50.2618453865337"
+                    Point3="20.75,-54.2618453865337" />
                   <mssgle:LineSegment
-                    End="151.25,-68.5" />
+                    End="20.75,-137.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="67.625,-21.0382608695652,16,16"
+              BoundingBox="2.375,-45.2618453865337,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint 1]"
+          TopLeft="93.5,215">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="131,-144"
+              Start="0,0"
+              End="131,-136.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-68" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-68"
+                    Point2="0,-72"
+                    Point3="4,-72" />
+                  <mssgle:LineSegment
+                    End="127,-72" />
+                  <mssgle:CubicBezierSegment
+                    Point1="127,-72"
+                    Point2="131,-72"
+                    Point3="131,-76" />
+                  <mssgle:LineSegment
+                    End="131,-136.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="57.5,-67,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint 2]"
+          TopLeft="124.25,215">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="194.75,-76"
+              Start="0,0"
+              End="194.75,-68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-22.3441396508728" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-22.3441396508728"
+                    Point2="0,-26.3441396508728"
+                    Point3="4,-26.3441396508728" />
+                  <mssgle:LineSegment
+                    End="190.75,-26.3441396508728" />
+                  <mssgle:CubicBezierSegment
+                    Point1="190.75,-26.3441396508728"
+                    Point2="194.75,-26.3441396508728"
+                    Point3="194.75,-30.3441396508728" />
+                  <mssgle:LineSegment
+                    End="194.75,-68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="89.375,-21.3441396508728,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint 3]"
-          TopLeft="217,230.333333333333">
+          TopLeft="159,230.333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="140,-30.3333333333333"
+              EndConnector="198,-30.3333333333333"
               Start="0,0"
-              End="132.5,-30.3333333333333">
+              End="190.5,-30.3333333333333">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="55.0825688073395,0" />
+                    End="79.559633027523,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="55.0825688073395,0"
-                    Point2="59.0825688073395,0"
-                    Point3="59.0825688073395,-4" />
+                    Point1="79.559633027523,0"
+                    Point2="83.559633027523,0"
+                    Point3="83.559633027523,-4" />
                   <mssgle:LineSegment
-                    End="59.0825688073395,-26.3333333333333" />
+                    End="83.559633027523,-26.3333333333333" />
                   <mssgle:CubicBezierSegment
-                    Point1="59.0825688073395,-26.3333333333333"
-                    Point2="59.0825688073395,-30.3333333333333"
-                    Point3="63.0825688073395,-30.3333333333333" />
+                    Point1="83.559633027523,-26.3333333333333"
+                    Point2="83.559633027523,-30.3333333333333"
+                    Point3="87.559633027523,-30.3333333333333" />
                   <mssgle:LineSegment
-                    End="132.5,-30.3333333333333" />
+                    End="190.5,-30.3333333333333" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="51.0825688073395,1,16,16"
+              BoundingBox="75.559633027523,1,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint 4]"
-          TopLeft="217,241.666666666667">
+          TopLeft="159,241.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="144,26.3333333333333"
+              EndConnector="202,26.3333333333333"
               Start="0,0"
-              End="136.5,26.3333333333333">
+              End="194.5,26.3333333333333">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="56.7706422018349,0" />
+                    End="81.2477064220184,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="56.7706422018349,0"
-                    Point2="60.7706422018349,0"
-                    Point3="60.7706422018349,4" />
+                    Point1="81.2477064220184,0"
+                    Point2="85.2477064220184,0"
+                    Point3="85.2477064220184,4" />
                   <mssgle:LineSegment
-                    End="60.7706422018349,22.3333333333333" />
+                    End="85.2477064220184,22.3333333333333" />
                   <mssgle:CubicBezierSegment
-                    Point1="60.7706422018349,22.3333333333333"
-                    Point2="60.7706422018349,26.3333333333333"
-                    Point3="64.7706422018349,26.3333333333333" />
+                    Point1="85.2477064220184,22.3333333333333"
+                    Point2="85.2477064220184,26.3333333333333"
+                    Point3="89.2477064220184,26.3333333333333" />
                   <mssgle:LineSegment
-                    End="136.5,26.3333333333333" />
+                    End="194.5,26.3333333333333" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="52.7706422018349,-22,16,16"
+              BoundingBox="77.2477064220184,-22,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint 5]"
-          TopLeft="167.75,257">
+          TopLeft="124.25,257">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="151.75,100"
+              EndConnector="195.25,100"
               Start="0,0"
-              End="151.75,92.5">
+              End="195.25,92.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.2608695652174" />
+                    End="0,30.6633416458853" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,30.2608695652174"
-                    Point2="0,34.2608695652174"
-                    Point3="4,34.2608695652174" />
+                    Point1="0,30.6633416458853"
+                    Point2="0,34.6633416458853"
+                    Point3="4,34.6633416458853" />
                   <mssgle:LineSegment
-                    End="147.75,34.2608695652174" />
+                    End="191.25,34.6633416458853" />
                   <mssgle:CubicBezierSegment
-                    Point1="147.75,34.2608695652174"
-                    Point2="151.75,34.2608695652174"
-                    Point3="151.75,38.2608695652174" />
+                    Point1="191.25,34.6633416458853"
+                    Point2="195.25,34.6633416458853"
+                    Point3="195.25,38.6633416458853" />
                   <mssgle:LineSegment
-                    End="151.75,92.5" />
+                    End="195.25,92.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="67.875,39.2608695652174,16,16"
+              BoundingBox="89.625,39.6633416458853,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint 6]"
-          TopLeft="122.5,257">
+          TopLeft="93.5,257">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="99,166"
+              EndConnector="128,166"
               Start="0,0"
-              End="99,158.5">
+              End="128,158.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -5878,44 +5184,56 @@
                     Point2="0,83"
                     Point3="4,83" />
                   <mssgle:LineSegment
-                    End="95,83" />
+                    End="124,83" />
                   <mssgle:CubicBezierSegment
-                    Point1="95,83"
-                    Point2="99,83"
-                    Point3="99,87" />
+                    Point1="124,83"
+                    Point2="128,83"
+                    Point3="128,87" />
                   <mssgle:LineSegment
-                    End="99,158.5" />
+                    End="128,158.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="41.5,88,16,16"
+              BoundingBox="56,88,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory.PrecedenceConstraints[Constraint 7]"
-          TopLeft="75.875,257">
+          TopLeft="62.75,257">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,167"
+              EndConnector="11.75,167"
               Start="0,0"
-              End="0,159.5">
+              End="11.75,159.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,159.5" />
+                    End="0,53.8877805486284" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,53.8877805486284"
+                    Point2="0,57.8877805486284"
+                    Point3="4,57.8877805486284" />
+                  <mssgle:LineSegment
+                    End="7.75,57.8877805486284" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.75,57.8877805486284"
+                    Point2="11.75,57.8877805486284"
+                    Point3="11.75,61.8877805486284" />
+                  <mssgle:LineSegment
+                    End="11.75,159.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,71.75,16,16"
+              BoundingBox="-2.125,62.8877805486284,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5948,17 +5266,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <AnnotationLayout
-          Text="The loop will assign the fully qualified file names &#xA;to a variable called CurrentFile. That variable will &#xA;be used to determine the site (e.g. dba.stackexchange)&#xA;and the type of data in the file (e.g. posts, tags, etc.)"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="317,88"
-          Id="0cd279c6-7eff-48b3-8fbe-2f9cd50ea829"
-          TopLeft="1074,92" />
-        <NodeLayout
-          Size="162,42"
-          Id="Package\Add Relationships"
-          TopLeft="809,294" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="752,314">
@@ -5988,55 +5295,29 @@
     design-time-name="Package\FEL - Foreach File in Import Directory\Badges">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="148,42"
-          Id="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB"
-          TopLeft="248,227" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\FEL - Foreach File in Import Directory\Badges\Add SiteID"
-          TopLeft="246,142" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
           Id="Package\FEL - Foreach File in Import Directory\Badges\XML Source File"
           TopLeft="245,59" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\FEL - Foreach File in Import Directory\Badges\SQL Server DB"
+          TopLeft="248,227" />
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory\Badges.Paths[row]"
-          TopLeft="322.25,101">
+          TopLeft="321.75,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41"
+              EndConnector="0,126"
               Start="0,0"
-              End="0,33.5">
+              End="0,118.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory\Badges.Paths[Derived Column Output]"
-          TopLeft="322.5,184">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
+                    End="0,118.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6065,7 +5346,7 @@
     design-time-name="Package\FEL - Foreach File in Import Directory\Comments">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
           Id="Package\FEL - Foreach File in Import Directory\Comments\XML Source File"
@@ -6074,46 +5355,20 @@
           Size="148,42"
           Id="Package\FEL - Foreach File in Import Directory\Comments\SQL Server DB"
           TopLeft="248,227" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\FEL - Foreach File in Import Directory\Comments\Add SiteID"
-          TopLeft="246,142" />
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory\Comments.Paths[Derived Column Output]"
-          TopLeft="322.5,184">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory\Comments.Paths[row]"
-          TopLeft="322.25,101">
+          TopLeft="321.75,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41"
+              EndConnector="0,126"
               Start="0,0"
-              End="0,33.5">
+              End="0,118.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="0,118.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6139,87 +5394,10 @@
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\FEL - Foreach File in Import Directory\Posts">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="153,42"
-          Id="Package\FEL - Foreach File in Import Directory\Posts\XML Source File"
-          TopLeft="245,59" />
-        <NodeLayout
-          Size="148,42"
-          Id="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB"
-          TopLeft="248,227" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\FEL - Foreach File in Import Directory\Posts\Add SiteID"
-          TopLeft="246,142" />
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory\Posts.Paths[Derived Column Output]"
-          TopLeft="322.5,184">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory\Posts.Paths[row]"
-          TopLeft="322.25,101">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,41"
-              Start="0,0"
-              End="0,33.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
     design-time-name="Package\FEL - Foreach File in Import Directory\PostHistory">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
           Id="Package\FEL - Foreach File in Import Directory\PostHistory\XML Source File"
@@ -6228,46 +5406,20 @@
           Size="148,42"
           Id="Package\FEL - Foreach File in Import Directory\PostHistory\SQL Server DB"
           TopLeft="248,227" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\FEL - Foreach File in Import Directory\PostHistory\Add SiteID"
-          TopLeft="246,142" />
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory\PostHistory.Paths[Derived Column Output]"
-          TopLeft="322.5,184">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory\PostHistory.Paths[row]"
-          TopLeft="322.25,101">
+          TopLeft="321.75,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41"
+              EndConnector="0,126"
               Start="0,0"
-              End="0,33.5">
+              End="0,118.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="0,118.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6296,55 +5448,29 @@
     design-time-name="Package\FEL - Foreach File in Import Directory\PostLinks">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="153,42"
-          Id="Package\FEL - Foreach File in Import Directory\PostLinks\XML Source File"
-          TopLeft="245,59" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="148,42"
           Id="Package\FEL - Foreach File in Import Directory\PostLinks\SQL Server DB"
           TopLeft="248,227" />
         <NodeLayout
-          Size="154,42"
-          Id="Package\FEL - Foreach File in Import Directory\PostLinks\Add SiteID"
-          TopLeft="246,142" />
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory\PostLinks.Paths[Derived Column Output]"
-          TopLeft="322.5,184">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="153,42"
+          Id="Package\FEL - Foreach File in Import Directory\PostLinks\XML Source File"
+          TopLeft="245,59" />
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory\PostLinks.Paths[row]"
-          TopLeft="322.25,101">
+          TopLeft="321.75,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41"
+              EndConnector="0,126"
               Start="0,0"
-              End="0,33.5">
+              End="0,118.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="0,118.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6370,36 +5496,32 @@
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\FEL - Foreach File in Import Directory\Tags">
+    design-time-name="Package\FEL - Foreach File in Import Directory\Posts">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
-          Id="Package\FEL - Foreach File in Import Directory\Tags\XML Source File"
+          Id="Package\FEL - Foreach File in Import Directory\Posts\XML Source File"
           TopLeft="245,59" />
         <NodeLayout
           Size="148,42"
-          Id="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB"
-          TopLeft="248,227" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\FEL - Foreach File in Import Directory\Tags\Add SiteID"
-          TopLeft="246,142" />
+          Id="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB"
+          TopLeft="253,182" />
         <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory\Tags.Paths[Derived Column Output]"
-          TopLeft="322.5,184">
+          Id="Package\FEL - Foreach File in Import Directory\Posts.Paths[row]"
+          TopLeft="324.25,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43"
+              EndConnector="0,81"
               Start="0,0"
-              End="0,35.5">
+              End="0,73.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.5" />
+                    End="0,73.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6408,20 +5530,49 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Foreach File in Import Directory\Posts\SQL Server DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\FEL - Foreach File in Import Directory\Tags">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148,42"
+          Id="Package\FEL - Foreach File in Import Directory\Tags\SQL Server DB"
+          TopLeft="248,227" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\FEL - Foreach File in Import Directory\Tags\XML Source File"
+          TopLeft="245,59" />
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory\Tags.Paths[row]"
-          TopLeft="322.25,101">
+          TopLeft="321.75,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41"
+              EndConnector="0,126"
               Start="0,0"
-              End="0,33.5">
+              End="0,118.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="0,118.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6450,7 +5601,7 @@
     design-time-name="Package\FEL - Foreach File in Import Directory\Users">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
           Id="Package\FEL - Foreach File in Import Directory\Users\XML Source File"
@@ -6459,46 +5610,20 @@
           Size="148,42"
           Id="Package\FEL - Foreach File in Import Directory\Users\SQL Server DB"
           TopLeft="248,227" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\FEL - Foreach File in Import Directory\Users\Add SiteID"
-          TopLeft="246,142" />
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory\Users.Paths[Derived Column Output]"
-          TopLeft="322.5,184">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory\Users.Paths[row]"
-          TopLeft="322.25,101">
+          TopLeft="321.75,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41"
+              EndConnector="0,126"
               Start="0,0"
-              End="0,33.5">
+              End="0,118.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="0,118.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6527,7 +5652,7 @@
     design-time-name="Package\FEL - Foreach File in Import Directory\Votes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
           Id="Package\FEL - Foreach File in Import Directory\Votes\XML Source File"
@@ -6536,46 +5661,20 @@
           Size="148,42"
           Id="Package\FEL - Foreach File in Import Directory\Votes\SQL Server DB"
           TopLeft="248,227" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\FEL - Foreach File in Import Directory\Votes\Add SiteID"
-          TopLeft="246,142" />
-        <EdgeLayout
-          Id="Package\FEL - Foreach File in Import Directory\Votes.Paths[Derived Column Output]"
-          TopLeft="322.5,184">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\FEL - Foreach File in Import Directory\Votes.Paths[row]"
-          TopLeft="322.25,101">
+          TopLeft="321.75,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41"
+              EndConnector="0,126"
               Start="0,0"
-              End="0,33.5">
+              End="0,118.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="0,118.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

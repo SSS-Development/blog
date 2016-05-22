@@ -5,9 +5,9 @@
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="unbounded" name="row">
           <xs:complexType>
-            <xs:attribute name="Id" type="xs:unsignedShort" use="optional" />
+            <xs:attribute name="Id" type="xs:unsignedInt" use="optional" />
             <xs:attribute name="TagName" type="xs:string" use="optional" />
-            <xs:attribute name="Count" type="xs:unsignedShort" use="optional" />
+            <xs:attribute name="Count" type="xs:unsignedInt" use="optional" />
             <xs:attribute name="ExcerptPostId" type="xs:unsignedInt" use="optional" />
             <xs:attribute name="WikiPostId" type="xs:unsignedInt" use="optional" />
           </xs:complexType>

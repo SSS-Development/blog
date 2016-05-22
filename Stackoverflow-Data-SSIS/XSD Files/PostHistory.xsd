@@ -5,9 +5,9 @@
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="unbounded" name="row">
           <xs:complexType>
-            <xs:attribute name="Id" type="xs:unsignedInt" use="optional" />
-            <xs:attribute name="PostHistoryTypeId" type="xs:unsignedByte" use="optional" />
-            <xs:attribute name="PostId" type="xs:unsignedInt" use="optional" />
+            <xs:attribute name="Id" type="xs:int" use="optional" />
+            <xs:attribute name="PostHistoryTypeId" type="xs:int" use="optional" />
+            <xs:attribute name="PostId" type="xs:int" use="optional" />
             <xs:attribute name="RevisionGUID" type="xs:string" use="optional" />
             <xs:attribute name="CreationDate" type="xs:dateTime" use="optional" />
             <xs:attribute name="UserId" type="xs:int" use="optional" />
